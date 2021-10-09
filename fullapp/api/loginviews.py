@@ -26,3 +26,5 @@ def create_user(request):
     # data has the json input
     except Exception :
         return Response({"output":"username already taken"})
+        
+   # TODO : GET IF USER IS LOGGED IN OR NOT
