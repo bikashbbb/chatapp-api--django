@@ -21,10 +21,11 @@ def user_authentication(request,usr):
 def create_user(request):
     # TODO: CREATE A USER
     try:
-        User.objects.create(username = request.data['username'],password = request.data['password'])
-        return Response({"output":"user created sucessfully"})
+        new_user = User.objects.create(username = request.data['username'],password = request.data['password'])
+        serialize = Loginserialized(new_user) 
+        return Response(serialize.data)
     # data has the json input
     except Exception :
-        return Response({"output":"username already taken"})
+        return Response({"username":"username already taken ###@"})
         
    # TODO : GET IF USER IS LOGGED IN OR NOT
