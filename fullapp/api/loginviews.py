@@ -10,6 +10,8 @@ def user_authentication(request,usr):
     username = usr.split('_')
     curent_user = auth.authenticate(username=username[0],password= username[1])
     if curent_user != None:
+        # if authentication method doesnt return null
+        auth.login(request,curent_user)
         Loginserialized_obj = Loginserialized(curent_user)
         return Response(Loginserialized_obj.data)
     else:
