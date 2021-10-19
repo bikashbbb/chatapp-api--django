@@ -20,8 +20,8 @@ def get_groupmsg(request):
 def post_messeges(request):
     # when clicked on the post button the json data will be requested as data 
     body = request.data
-    # data instance gives me the json response coming from request/ post click garesi
-    Groupmsg.objects.create(userid= body['userid'],
+    userinstance = User.objects.get(username = body['userid'])
+    Groupmsg.objects.create(userid= userinstance,
     messege = body['messege'],
     messege_sent_at = body['messege_sent_at'],
     images = body['images']
