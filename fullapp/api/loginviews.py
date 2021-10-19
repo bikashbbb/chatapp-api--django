@@ -10,6 +10,9 @@ def user_authentication(request,usr):
     username = usr.split('_')
     curent_user = auth.authenticate(username=username[0],password= username[1])
     if curent_user != None:
+        # if authentication method doesnt return null 
+        # return the field data of the current user.
+        auth.login(request,curent_user)
         Loginserialized_obj = Loginserialized(curent_user)
         return Response(Loginserialized_obj.data)
     else:
@@ -21,8 +24,11 @@ def user_authentication(request,usr):
 def create_user(request):
     # TODO: CREATE A USER
     try:
-        User.objects.create(username = request.data['username'],password = request.data['password'])
-        return Response({"output":"user created sucessfully"})
+        new_user = User.objects.create(username = request.data['username'],password = request.data['password'])
+        serialize = Loginserialized(new_user) 
+        return Response(serialize.data)
     # data has the json input
     except Exception :
-        return Response({"output":"username already taken"})
+        return Response({"username":"username already taken ###@"})
+        
+   # TODO : GET IF USER IS LOGGED IN OR NOT
