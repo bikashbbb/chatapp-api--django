@@ -29,6 +29,3 @@ def post_messeges(request):
     return Response({
         "object": "created sucessfully"
     })
-
-
-

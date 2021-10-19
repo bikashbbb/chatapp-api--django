@@ -12,6 +12,7 @@ def user_authentication(request,usr):
     if curent_user != None:
         # if authentication method doesnt return null 
         # return the field data of the current user.
+        # if authentication method doesnt return null
         auth.login(request,curent_user)
         Loginserialized_obj = Loginserialized(curent_user)
         return Response(Loginserialized_obj.data)
