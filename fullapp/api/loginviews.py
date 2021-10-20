@@ -25,7 +25,9 @@ def user_authentication(request,usr):
 def create_user(request):
     # TODO: CREATE A USER
     try:
-        new_user = User.objects.create(username = request.data['username'],password = request.data['password'])
+        new_user = User.objects.create(username = request.data['username'])
+        new_user.set_password(request.data['password'])
+        new_user.save()
         serialize = Loginserialized(new_user) 
         return Response(serialize.data)
     # data has the json input
