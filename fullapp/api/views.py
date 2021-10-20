@@ -10,8 +10,6 @@ from .serializers import Groupmsg,Groupmsgserialized, Loginserialized
 def get_groupmsg(request):
     # TODO: GET THE DATA BASE SHOWN IN HERE , THIS IS GET PAGE
     _response = Groupmsg.objects.all()
-    # get the objects to be serialized 
-    # serialize the model objects
     serialized_objects = Groupmsgserialized(_response,many=True)
     return Response(serialized_objects.data)  
     # this data instance returns list of json data as it gets processd in serializer
@@ -20,7 +18,7 @@ def get_groupmsg(request):
 def post_messeges(request):
     # when clicked on the post button the json data will be requested as data 
     body = request.data
-    userinstance = User.objects.get(username = body['userid'])
+    userinstance = User.objects.get(username = body['userid']['username'])
     Groupmsg.objects.create(userid= userinstance,
     messege = body['messege'],
     messege_sent_at = body['messege_sent_at'],

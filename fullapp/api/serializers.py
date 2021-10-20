@@ -11,6 +11,7 @@ class Groupmsgserialized(ModelSerializer):
     class Meta:
         model = Groupmsg
         fields = '__all__'
+        depth = 1
 
 class NicknameSerialized(ModelSerializer):
     # we are using this to serialize object

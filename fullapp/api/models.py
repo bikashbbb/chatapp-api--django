@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Groupmsg(models.Model):
     userid = models.ForeignKey(User,on_delete=models.CASCADE) # has realtion with the User  mnodel
     messege = models.TextField(null= True)
-    messege_sent_at = models.DateTimeField()
+    messege_sent_at = models.TimeField(null=False, auto_now_add=False,auto_now=False)
     images = models.ImageField(null= True,blank = True,upload_to= "images/")
     # image nahuna ni payo ki messege nahuna ni payoo..
 
@@ -14,6 +14,11 @@ class Groupmsg(models.Model):
     
     class Meta:
         ordering = ['messege_sent_at']
+
+def get_name(self):
+    return self.username
+
+User.add_to_class("__str__", get_name)
 
 class NickNames(models.Model):
     userid = models.ForeignKey(User,on_delete=models.CASCADE)
