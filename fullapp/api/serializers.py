@@ -1,10 +1,9 @@
-from re import L
+from re import I, L
 from django.db import models
 from django.db.models import fields
 from rest_framework.serializers import ModelSerializer
 from .models import Groupmsg,NickNames
 from  django.contrib.auth.models import  User
-
 
 class Groupmsgserialized(ModelSerializer):
 # serializer/ change the model into json file here

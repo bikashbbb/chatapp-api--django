@@ -1,0 +1,5 @@
+relase: python manage.py makemigations --no-input
+relase: python manage.py migrate --no-input
+
+
+web: gunicorn fullapp.wsgi

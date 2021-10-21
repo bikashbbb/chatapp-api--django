@@ -1,4 +1,3 @@
-import re
 from .serializers import User, Loginserialized
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
