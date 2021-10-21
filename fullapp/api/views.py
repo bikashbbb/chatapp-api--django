@@ -18,12 +18,17 @@ def get_groupmsg(request):
 def post_messeges(request):
     # when clicked on the post button the json data will be requested as data 
     body = request.data
-    userinstance = User.objects.get(username = body['userid']['username'])
-    Groupmsg.objects.create(userid= userinstance,
-    messege = body['messege'],
-    messege_sent_at = body['messege_sent_at'],
-    images = body['images']
-    )    
-    return Response({
-        "object": "created sucessfully"
-    })
+    userinstance = User.objects.get(id=body['userid'])
+    try:
+        Groupmsg.objects.create(userid= userinstance,
+        messege = body['messege'],
+        messege_sent_at = body['messege_sent_at'],
+        images = body['images']
+        )    
+        return Response({
+            "object": "created sucessfully"
+        })
+    except Exception as e:
+        return Response({
+            "object": str(e)
+        })

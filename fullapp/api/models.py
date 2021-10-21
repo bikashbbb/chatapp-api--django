@@ -5,8 +5,7 @@ from django.contrib.auth.models import User
 class Groupmsg(models.Model):
     userid = models.ForeignKey(User,on_delete=models.CASCADE) # has realtion with the User  mnodel
     messege = models.TextField(null= True)
-    messege_sent_at = models.TimeField(null=False, auto_now_add=False,auto_now=False)
-    messege_sent_at = models.TimeField(auto_now=False, auto_now_add=False)
+    messege_sent_at = models.DateTimeField(null=False, auto_now_add=False,auto_now=False)
     images = models.ImageField(null= True,blank = True,upload_to= "images/")
     # image nahuna ni payo ki messege nahuna ni payoo..
 
@@ -14,7 +13,8 @@ class Groupmsg(models.Model):
         return str(self.messege_sent_at)
     
     class Meta:
-        ordering = ['messege_sent_at']
+        ordering = ['-messege_sent_at']
+        # save data on descending order. i.e jun date agadiko pacadi save hunxa
 
 def get_name(self):
     return self.username

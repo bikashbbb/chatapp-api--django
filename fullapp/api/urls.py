@@ -3,6 +3,8 @@ from .views import get_groupmsg,post_messeges
 from .nickname_views import get_all_nickname,post_nickname,del_nickname,get_individual_nickname,update_nickname
 from .loginviews import user_authentication,create_user
 
+
+# TODO: MAKE AUTHETICATION TO ACESS THE GROUPCHAT PAGE OF API WITH TOKEN
 urlpatterns = [
     # GROUP MESSEGE
     path('groupmesseges/',get_groupmsg),
